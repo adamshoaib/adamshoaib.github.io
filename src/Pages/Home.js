@@ -56,15 +56,13 @@ class Home extends React.Component {
     };
   }
   pageNumberChanged = (e, page) => {
-    console.log("pageNumberChanged :", page);
     this.setState({ page: page });
   };
 
   onSubmitClicked = (data) => {
-    console.log("Data: ", data);
     axios({
       method: "post",
-      url: `${baseUrl}/api/v1/get_apt`,
+      url: `${this.state.baseUrl}/api/v1/get_apt`,
       data: data.data,
     }).then((response) => {
       this.setState({ data: response.data });
