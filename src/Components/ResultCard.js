@@ -8,14 +8,14 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 
 export default function ResultCard({ details, seeDetailsClicked }) {
-  console.log("Details :", details);
+  console.log("details : 1", details);
   return (
     <Card sx={{ width: 345, marginRight: 5, marginTop: 5 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={"Image Not Found !"}
         height="140"
-        image="https://picsum.photos/200/300"
+        image={details ? details.images : "-"}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
