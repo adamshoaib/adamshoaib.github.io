@@ -18,6 +18,7 @@ class Form extends React.Component {
     this.state = {
       pageNumbers: 10,
       page: 1,
+      bedType: 0,
       form: {
         searchText: "",
         is2b: false,
@@ -32,6 +33,29 @@ class Form extends React.Component {
       },
     };
   }
+
+  handleBedTypeChange = (event) => {
+    this.setState({
+      bedType: event.target.value,
+    });
+    if (event.target.value == 1) {
+      this.setState({
+        form: { ...this.state.form, is1b: true, is2b: false, is3b: false },
+      });
+    } else if (event.target.value == 2) {
+      this.setState({
+        form: { ...this.state.form, is1b: false, is2b: true, is3b: false },
+      });
+    } else if (event.target.value == 3) {
+      this.setState({
+        form: { ...this.state.form, is1b: false, is2b: false, is3b: true },
+      });
+    } else {
+      this.setState({
+        form: { ...this.state.form, is1b: false, is2b: false, is3b: false },
+      });
+    }
+  };
 
   handleChange = (event) => {
     this.setState({
@@ -48,6 +72,7 @@ class Form extends React.Component {
   };
 
   submitClicked = () => {
+    console.log("submitClicked : ", this.state.form);
     this.props.onSubmitClicked({ data: this.state.form });
   };
 
@@ -94,8 +119,7 @@ class Form extends React.Component {
   };
 
   render() {
-    const { is2b, is3b, is1b, hasPool, hasGym, isPetFriendly, rent, ratings } =
-      this.state.form;
+    const { hasPool, hasGym, isPetFriendly, rent, ratings } = this.state.form;
     return (
       <Box
         component="form"
@@ -171,38 +195,6 @@ class Form extends React.Component {
           />
           <FormGroup>
             <FormControlLabel
-              control={<Checkbox checked={is1b} />}
-              label="1 Bedroom"
-              onChange={(e) => {
-                this.is1bChanged(e);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox checked={is2b} />}
-              label="2 Bedroom"
-              onChange={(e) => {
-                this.is2bChanged(e);
-              }}
-            />
-          </FormGroup>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox checked={is3b} />}
-              label="3 Bedroom"
-              onChange={(e) => {
-                this.is3bChanged(e);
-              }}
-            />
-            <FormControlLabel
-              control={<Checkbox checked={isPetFriendly} />}
-              label="Pet Friendly"
-              onChange={(e) => {
-                this.isPetChanged(e);
-              }}
-            />
-          </FormGroup>
-          <FormGroup>
-            <FormControlLabel
               control={<Checkbox checked={hasGym} />}
               label="Gym"
               onChange={(e) => {
@@ -217,6 +209,31 @@ class Form extends React.Component {
               }}
             />
           </FormGroup>
+          <FormGroup>
+            <FormControlLabel
+              control={<Checkbox checked={isPetFriendly} />}
+              label="Pet Friendly"
+              onChange={(e) => {
+                this.isPetChanged(e);
+              }}
+            />
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <InputLabel id="demo-select-small">Bedrooms</InputLabel>
+              <Select
+                labelId="demo-select-small"
+                id="demo-select-small"
+                value={this.state.bedType}
+                label="Rent Range"
+                onChange={(e) => this.handleBedTypeChange(e)}
+              >
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>1 Bedroom</MenuItem>
+                <MenuItem value={2}>2 Bedroom</MenuItem>
+                <MenuItem value={3}>3 Bedroom</MenuItem>
+              </Select>
+            </FormControl>
+          </FormGroup>
+
           <FormGroup>
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
               <InputLabel id="demo-select-small">Rent Range</InputLabel>
