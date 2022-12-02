@@ -37,7 +37,7 @@ class Form extends React.Component {
   handleBedTypeChange = (event) => {
     this.setState({
       bedType: event.target.value,
-    });
+    }); 
     if (event.target.value == 1) {
       this.setState({
         form: { ...this.state.form, is1b: true, is2b: false, is3b: false },
