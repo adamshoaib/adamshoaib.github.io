@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,18 +8,25 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 
 export default function ResultCard({ details, seeDetailsClicked }) {
-  console.log("details : 1", details);
+  const [image, setImage] = useState("");
+  useEffect(() => {
+    const img = details?.images?.split(",");
+    if (img && img.length > 0) {
+      setImage(img[0]);
+    }
+  }, []);
+
   return (
     <Card sx={{ width: 345, marginRight: 5, marginTop: 5 }}>
       <CardMedia
         component="img"
         alt={"Image Not Found !"}
         height="140"
-        image={details ? details.images : "-"}
+        image={image ? image : "-"}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {details.name}
+          {details.property_name}
         </Typography>
         <div>
           <Typography variant="body2" color="text.secondary">

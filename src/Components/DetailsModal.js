@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -20,6 +20,13 @@ const style = {
 
 export default function DetailsModal({ isOpen = false, data, closeModal }) {
   const [open, setOpen] = React.useState(isOpen);
+  const [image, setImage] = useState("");
+  useEffect(() => {
+    const img = data?.images?.split(",");
+    if (img && img.length > 0) {
+      setImage(img[0]);
+    }
+  }, [data]);
   React.useEffect(() => {
     setOpen(isOpen);
   }, [isOpen]);
@@ -43,7 +50,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
             component="img"
             alt={"Image Not Found !"}
             height="140"
-            image={data ? data.images : "-"}
+            image={image ? image : "-"}
           />
           <Typography
             align={"center"}
@@ -52,7 +59,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
             variant="h6"
             component="h2"
           >
-            {data ? data.name : "-"}
+            {data.property_name ? data.property_name : "-"}
           </Typography>
 
           <div
@@ -75,7 +82,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
             }}
           >
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {`${data ? data.apartment_address : "-"}`}
+              {`${data.apartment_address ? data.apartment_address : "-"}`}
             </Typography>
           </div>
 
@@ -100,7 +107,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Availability`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.model_availability : "-"}`}
+                {`${data.model_availability ? data.model_availability : "-"}`}
               </Typography>
             </div>
 
@@ -118,7 +125,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`City`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.city : "-"}`}
+                {`${data.city ? data.city : "-"}`}
               </Typography>
             </div>
           </div>
@@ -137,7 +144,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
               {`Apartment Amenity`}
             </Typography>
             <Typography id="modal-modal-description" sx={{}}>
-              {`${data ? data.apartment_amenity : "-"}`}
+              {`${data.apartment_amenity ? data.apartment_amenity : "-"}`}
             </Typography>
           </div>
 
@@ -155,7 +162,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
               {`Community Amenity`}
             </Typography>
             <Typography id="modal-modal-description" sx={{}}>
-              {`${data ? data.community_amenity : "-"}`}
+              {`${data.community_amenity ? data.community_amenity : "-"}`}
             </Typography>
           </div>
 
@@ -173,7 +180,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
               {`College Distance`}
             </Typography>
             <Typography id="modal-modal-description" sx={{}}>
-              {`${data ? data.college_distance : "-"}`}
+              {`${data.college_distance ? data.college_distance : "-"}`}
             </Typography>
           </div>
 
@@ -198,7 +205,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Rent`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.apartment_rent : "-"}`}
+                {`${data.apartment_rent ? data.apartment_rent : "-"}`}
               </Typography>
             </div>
 
@@ -216,7 +223,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Contact`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.contact : "-"}`}
+                {`${data.contact ? data.contact : "-"}`}
               </Typography>
             </div>
           </div>
@@ -242,7 +249,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Baths`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.baths : "-"}`}
+                {`${data.baths ? data.baths : "-"}`}
               </Typography>
             </div>
             <div
@@ -259,7 +266,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`beds`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.beds : "-"}`}
+                {`${data.beds ? data.beds : "-"}`}
               </Typography>
             </div>
           </div>
@@ -285,7 +292,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Cat Policy`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.cat_policy : "-"}`}
+                {`${data.cat_policy ? data.cat_policy : "-"}`}
               </Typography>
             </div>
 
@@ -303,7 +310,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Dog Policy`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.dog_policy : "-"}`}
+                {`${data.dog_policy ? data.dog_policy : "-"}`}
               </Typography>
             </div>
           </div>
@@ -329,7 +336,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Model Size`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.model_size : "-"}`}
+                {`${data.model_size ? data.model_size : "-"}`}
               </Typography>
             </div>
 
@@ -347,7 +354,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Built In`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.built_in : "-"}`}
+                {`${data.built_in ? data.built_in : "-"}`}
               </Typography>
             </div>
           </div>
@@ -373,7 +380,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Max Rent`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.rent_max : "-"}`}
+                {`${data.rent_max ? data.rent_max : "-"}`}
               </Typography>
             </div>
 
@@ -391,7 +398,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Min Rent`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.rent_min : "-"}`}
+                {`${data.rent_min ? data.rent_min : "-"}`}
               </Typography>
             </div>
           </div>
@@ -417,7 +424,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Transit Score`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.transit_score : "-"}`}
+                {`${data.transit_score ? data.transit_score : "-"}`}
               </Typography>
             </div>
 
@@ -435,7 +442,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
                 {`Walk Score`}
               </Typography>
               <Typography id="modal-modal-description" sx={{}}>
-                {`${data ? data.walk_score : "-"}`}
+                {`${data.walk_score ? data.walk_score : "-"}`}
               </Typography>
             </div>
           </div>
@@ -454,7 +461,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
               {`Nearby`}
             </Typography>
             <Typography id="modal-modal-description" sx={{}}>
-              {`${data ? data.nearby_poi : "-"}`}
+              {`${data.nearby_poi ? data.nearby_poi : "-"}`}
             </Typography>
           </div>
 
@@ -472,7 +479,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
               {`Neightborhood Description`}
             </Typography>
             <Typography id="modal-modal-description" sx={{}}>
-              {`${data ? data.neightborhood_description : "-"}`}
+              {`${data.neightborhood_description ? data.neightborhood_description : "-"}`}
             </Typography>
           </div>
 
@@ -490,7 +497,7 @@ export default function DetailsModal({ isOpen = false, data, closeModal }) {
               {`Description`}
             </Typography>
             <Typography id="modal-modal-description" sx={{}}>
-              {`${data ? data.description : "-"}`}
+              {`${data.description ? data.description : "-"}`}
             </Typography>
           </div>
         </Box>

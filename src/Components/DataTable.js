@@ -9,20 +9,17 @@ class DataTable extends React.Component {
   }
 
   seeDetailsClicked = (data) => {
-    console.log("seeDetailsClicked :", data);
     this.setState({ data: data }, () => {
       this.setState({ isOpen: true });
     });
   };
 
   closeModal = () => {
-    console.log("CloseModal :");
     this.setState({ isOpen: false });
   };
 
   render() {
     const { data } = this.props;
-    console.log("Data : ", data);
     return (
       <div
         style={{
