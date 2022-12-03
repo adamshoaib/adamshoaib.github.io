@@ -32,7 +32,7 @@ class DataTable extends React.Component {
           justifyContent: "center",
         }}
       >
-        {data ? (
+        {data && data.length > 0 ? (
           data.map((row, index) => (
             <ResultCard
               key={index}

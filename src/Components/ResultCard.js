@@ -36,10 +36,7 @@ export default function ResultCard({ details, seeDetailsClicked }) {
         <Rating name="simple-controlled" value={details.rating} readOnly />
         <div>
           <Typography variant="body2" color="text.secondary">
-            {`Max Rent : ${details.rent_max ? details.rent_max : "-"}`}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {`Min rent :  ${details.rent_min ? details.rent_min : "-"}`}
+            {`Rent : ${details.apartment_rent ? details.apartment_rent : "-"}`}
           </Typography>
         </div>
       </CardContent>
